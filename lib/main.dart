@@ -9,6 +9,8 @@ void main() {
 }
 
 class SecondRoute extends StatelessWidget {
+  final String text;
+      SecondRoute({Key key, @required this.text}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class SecondRoute extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             
-            Text("Thanks for submitting",
+            Text(text+" Thanks for submitting",
             style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height:100),
@@ -70,6 +72,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String title="task2";
+  TextEditingController name = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     
@@ -172,6 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
            
            Padding(padding: EdgeInsets.symmetric(vertical:20,horizontal: 20),
            child: TextFormField(
+              controller: name,
              decoration: InputDecoration(
                border : UnderlineInputBorder(),
                labelText: 'enter name'
@@ -185,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
            ElevatedButton(onPressed:(){
              Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SecondRoute()),
+              MaterialPageRoute(builder: (context) => SecondRoute( text:name.text.toString())),
             );
 
            }, 
